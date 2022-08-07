@@ -26,15 +26,15 @@ def downloads(type: str, time: str, username: str, db: str, token: str):
         diff = t - datetime.datetime(1970, 1, 1)
         match time:
             case 'hourly':
-                return diff.hours
+                return diff.days * 24
             case 'daily':
                 return diff.days
             case 'weekly':
-                return diff.weeks
+                return int(diff.days / 7)
             case 'monthly':
-                return diff.months
+                return int(diff.months / 30.437)
             case 'annually':
-                return diff.years
+                return int(diff.days / 365.25)
 
     prev_time = get_time(unfiltered_times[0])
     indexes = [0]
