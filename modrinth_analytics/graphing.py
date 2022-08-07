@@ -72,10 +72,11 @@ def downloads(type: str, time: str, username: str, db: str, token: str):
                 project = labrinth.projects.project(project_id, token)
                 mpl.plot(times, download_count, label=project.title)
 
+            mpl.legend()
+
     mpl.gca().xaxis.set_major_formatter(DateFormatter('%d/%m/%y'))
     mpl.gcf().autofmt_xdate()
     mpl.gca().yaxis.set_major_formatter(FuncFormatter(lambda x, pos: pretty.human_format(x)))
-    mpl.legend()
     mpl.title(f'{type} downloads ({time})'.capitalize())
     mpl.xlabel('Time')
     mpl.ylabel('Downloads')
